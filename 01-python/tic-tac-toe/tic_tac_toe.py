@@ -89,8 +89,17 @@ class TicTacToeGame():
     # TODO: Implement this function, it must be able to print the board in the following format:
     #  x|o| 
     #   | | 
-    #   | | 
-    return self.board
+    #   | |
+    board = ""
+    for i in range(0, len(self.board), 3):
+      for j in range(0, 3):
+        symbol = " " if self.board[i+j] == None else self.board[i+j]
+        if j == 1:
+          board += "|" + symbol + "|"
+        else:
+          board += symbol
+      board += "\n"
+    return board
 
   def print(self):
     print("Player turn:" if self.turn == _MACHINE else "Machine turn:")
