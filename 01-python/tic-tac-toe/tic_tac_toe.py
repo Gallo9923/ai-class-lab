@@ -56,6 +56,9 @@ class TicTacToeGame():
       self.winner = _PLAYER
     elif won == True and symbol == _MACHINE_SYMBOL:
       self.winner = _MACHINE
+    else:
+      if not (None in self.board):
+        won = True
 
     return won
 
@@ -95,6 +98,7 @@ class TicTacToeGame():
   def machine_turn(self):
     # TODO: Implement this function to make the machine choose a random cell (use random module)
     # The result of this function should be that self.board now has one more random cell occupied
+
     unoccupied_spaces = []
     for i in range(0, len(self.board)):
       if self.board[i] == None:
@@ -103,10 +107,10 @@ class TicTacToeGame():
     play_cell = random.choice(unoccupied_spaces)
     self.board[play_cell] = _MACHINE_SYMBOL
 
-    #for i, cell in enumerate(self.board):
-    # if cell is None:
-    #   self.board[i] = _MACHINE_SYMBOL
-    #   break
+    # for i, cell in enumerate(self.board):
+    #   if cell is None:
+    #     self.board[i] = _MACHINE_SYMBOL
+    #     break
 
   def format_board(self):
     # TODO: Implement this function, it must be able to print the board in the following format:
@@ -132,7 +136,7 @@ class TicTacToeGame():
   def print_result(self):
     # TODO: Implement this function in order to print the result based on the self.winner
     print("========================= \n" +
-          "The winner is: " + self.winner + "\n" +
+          "The winner is: " + str(self.winner) + "\n" +
           "=========================\n" +
           self.format_board())
     pass
