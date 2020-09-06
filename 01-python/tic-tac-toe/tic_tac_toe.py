@@ -13,8 +13,35 @@ class TicTacToeGame():
     self.is_game_over = False
     self.winner = None
 
-  def is_over(self): # TODO: Finish this function by adding checks for a winning game (rows, columns, diagonals)
-    return self.board.count(None) == 0
+  def is_won_by_rows(self, turn):
+    won = True
+    for i in range(0, len(self.board), 3):
+      won = True
+      for i in range(i, i + 3):
+        if self.board[i] != turn:
+          won = False
+          break
+      if won == True:
+        break
+    return won
+
+  def is_won_by_columns(self, turn):
+    won = True
+    for i in range(3):
+      val = i
+      for j in range(3):
+        if self.board[val] != turn:
+          won = False
+          break
+        val = val + 3
+      if won == True:
+        break
+    return won
+
+  def is_over(self):  # TODO: Finish this function by adding checks for a winning game (rows, columns, diagonals)
+    symbol = _PLAYER_SYMBOL if self.turn == _MACHINE_SYMBOL else _PLAYER_SYMBOL
+    won = self.is_won_by_rows(symbol) or self.is_won_by_columns(symbol)
+    return won
 
   def play(self):
     if self.turn == _PLAYER:
